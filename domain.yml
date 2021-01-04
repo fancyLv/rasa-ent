@@ -1,0 +1,64 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - request_weather
+
+entities:
+  - company
+  - type
+
+slots:
+  company:
+    type: unfeaturized
+    auto_fill: false
+    influence_conversation: false
+  type:
+    type: unfeaturized
+    auto_fill: false
+    influence_conversation: false
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_ask_company:
+    - text: 请问您要查询哪家公司？
+  utter_ask_type:
+    - text: 请问您要查询{company}什么信息？
+  utter_wrong_type:
+    - text: 当前还不支持查询{type}。
+
+actions:
+  - utter_ask_company
+  - utter_ask_type
+  - ent_form
+
+forms:
+  ent_form: {}
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,44 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: 企业 + 基本信息 + 负面信息 + 热点新闻
+  steps:
+    - intent: request_ent
+    - action: ent_form
+    - active_loop: ent_form
+    - slot_was_set:
+        - requested_slot: company
+    - slot_was_set:
+        - company: 深圳市腾讯网域计算机网络有限公司
+    - slot_was_set:
+        - requested_slot: type
+    - slot_was_set:
+        - type: 基本信息
