@@ -10,8 +10,10 @@
 from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
+from rasa_sdk.events import EventType
 from rasa_sdk.forms import FormAction
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.types import DomainDict
 
 
 class EntForm(FormAction):
@@ -21,13 +23,16 @@ class EntForm(FormAction):
 
     @staticmethod
     def required_slots(tracker: "Tracker") -> List[Text]:
-        pass
+        return ["company", "type"]
 
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        dispatcher.utter_message(text="Hello World!")
-
+    async def submit(
+            self,
+            dispatcher: "CollectingDispatcher",
+            tracker: "Tracker",
+            domain: "DomainDict",
+    ) -> List[EventType]:
+        company = tracker.get_slot('company')
+        type = tracker.get_slot('type')
+        print(type)
+        dispatcher.utter_message(f"{company} {type}")
         return []
