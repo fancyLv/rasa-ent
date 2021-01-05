@@ -7,13 +7,16 @@
 
 # This is a simple example for a custom action which utters "Hello World!"
 
-from typing import Any, Text, Dict, List
+from typing import Text, List
 
-from rasa_sdk import Action, Tracker
-from rasa_sdk.events import EventType
-from rasa_sdk.forms import FormAction
+from rasa_sdk import Tracker
+from rasa_sdk.events import EventType, SlotSet
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.forms import FormAction
 from rasa_sdk.types import DomainDict
+from requests import ConnectionError, HTTPError, TooManyRedirects, Timeout
+
+from actions.third_ent import get_basic_info, get_hot_news, get_negative_info
 
 
 class EntForm(FormAction):
@@ -33,6 +36,41 @@ class EntForm(FormAction):
     ) -> List[EventType]:
         company = tracker.get_slot('company')
         type = tracker.get_slot('type')
-        print(type)
         dispatcher.utter_message(f"{company} {type}")
-        return []
+        return [SlotSet('type', None)]
+
+
+def get_info_type(company, type):
+    if type in ('热点新闻', '新闻', '热点', '新闻舆情', '舆情'):
+        try:
+            result = get_hot_news(company)
+            if result:
+                text_message = f"""热点新闻：{result['title']}  {result['time']}\n{result['link']}"""
+            else:
+                text_message = "暂无信息"
+        except (ConnectionError, HTTPError, TooManyRedirects, Timeout) as e:
+            text_message = "{}".format(e)
+
+    elif type in ('信息', '基本信息', '工商信息', '工商基本信息'):
+        try:
+            result = get_basic_info(company)
+            if result:
+                text_message = "\n".join(f"{key}：{result[key]}" for key in result if key != 'pid')
+                text_message += '\n更多信息{}'
+            else:
+                text_message = "暂无信息"
+        except (ConnectionError, HTTPError, TooManyRedirects, Timeout) as e:
+            text_message = "{}".format(e)
+    elif type in ['企业负面', '负面', '负面信息', '处罚', '失信']:
+        try:
+            result = get_negative_info(company)
+            if result:
+                text_message = "\n".join(f"{key}：{result[key]}" for key in result)
+                text_message += '\n更多信息{}'
+            else:
+                text_message = "暂无信息"
+        except (ConnectionError, HTTPError, TooManyRedirects, Timeout) as e:
+            text_message = "{}".format(e)
+    else:
+        text_message = f"暂不支持查询{type}"
+    return text_message

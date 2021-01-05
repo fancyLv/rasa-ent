@@ -42,3 +42,6 @@ stories:
         - requested_slot: type
     - slot_was_set:
         - type: 基本信息
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null

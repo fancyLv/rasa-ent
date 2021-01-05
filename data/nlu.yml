@@ -1,5 +1,4 @@
 version: "2.0"
-
 nlu:
 - intent: greet
   examples: |
@@ -16,7 +15,6 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
-
 - intent: goodbye
   examples: |
     - good afternoon
@@ -30,7 +28,6 @@ nlu:
     - see you around
     - bye bye
     - see you later
-
 - intent: affirm
   examples: |
     - yes
@@ -39,7 +36,7 @@ nlu:
     - of course
     - that sounds good
     - correct
-
+    - 你好
 - intent: deny
   examples: |
     - no
@@ -49,7 +46,6 @@ nlu:
     - don't like that
     - no way
     - not really
-
 - intent: mood_great
   examples: |
     - perfect
@@ -66,7 +62,6 @@ nlu:
     - so so perfect
     - so good
     - so perfect
-
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -83,46 +78,44 @@ nlu:
     - extremly sad
     - so saad
     - so sad
-
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
-
 - intent: request_ent
   examples: |
     - 查企业
     - 查公司
-    - 我想知道[深圳市腾讯网域计算机网络有限公司](company)的[信息](type)
-
+    - 我想知道[深圳市腾讯计算机系统有限公司](company)的[信息](type)
 - intent: inform
   examples: |
     - [基本信息](type)
     - [热点新闻](type)
-
+- intent: request_others
+  examples: |
+    - 查天气
 - synonym: 工商信息
   examples: |
     - 信息
     - 基本信息
     - 工商信息
     - 工商基本信息
-
 - synonym: 热点新闻
   examples: |
     - 热点新闻
     - 新闻舆情
     - 舆情
     - 新闻
-
+    - 热点
 - synonym: 企业负面
   examples: |
+    - 企业负面
     - 负面
     - 负面信息
     - 处罚
     - 失信
-
 - regex: company
   examples: |
     - (.*?公司)
