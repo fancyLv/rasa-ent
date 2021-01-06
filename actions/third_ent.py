@@ -78,6 +78,7 @@ def get_basic_info(ent_name):
                 '成立时间': item['validityFrom'],
                 '地址': item['titleDomicile'],
                 '经营范围': item['scope'],
+                '更多信息': f'https://aiqicha.baidu.com/company_detail_{item["pid"]}?tab=basic'
             }
     return result
 
@@ -94,7 +95,7 @@ def get_hot_news(ent_name):
         url = f'https://aiqicha.baidu.com/yuqing/hotpotNewsAjax?pid={pid}'
         response = requests.get(url, headers=headers)
         news = response.json()['data']
-        news['link'] = 'https://aiqicha.baidu.com'+ news['link']
+        news['link'] = 'https://aiqicha.baidu.com' + news['link']
     else:
         news = {}
     return news
@@ -113,6 +114,7 @@ def get_negative_info(ent_name):
         response = requests.get(url, headers=headers)
         data = response.json()['data']
         result = {data_map[key]: data[key]['total'] for key in data if data[key]['total'] and data_map.get(key)}
+        result['更多信息'] = f'https://aiqicha.baidu.com/company_detail_{pid}?tab=risk'
     else:
         result = {}
     return result

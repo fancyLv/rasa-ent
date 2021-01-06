@@ -1,21 +1,17 @@
 language: zh
 
 pipeline:
-   - name: JiebaTokenizer
-   - name: CRFEntityExtractor
-   - name: CountVectorsFeaturizer
-     OOV_token: oov
-     token_pattern: '(?u)\b\w+\b'
-#   - name: EmbeddingIntentClassifier
-   - name: RegexFeaturizer
-     analyzer: char_wb
-     min_ngram: 1
-     max_ngram: 4
-   - name: DIETClassifier
+  - name: JiebaTokenizer
+  - name: RegexFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+  - name: DIETClassifier
 
 policies:
    - name: MemoizationPolicy
    - name: TEDPolicy
      max_history: 5
-     epochs: 100
+     epochs: 200
    - name: RulePolicy

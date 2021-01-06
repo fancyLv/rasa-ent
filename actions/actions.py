@@ -56,7 +56,6 @@ def generate_message(company, type):
             result = get_basic_info(company)
             if result:
                 text_message = "\n".join(f"{key}：{result[key]}" for key in result if key != 'pid')
-                text_message += '\n更多信息{}'
             else:
                 text_message = "暂无信息"
         except (ConnectionError, HTTPError, TooManyRedirects, Timeout) as e:
@@ -66,7 +65,6 @@ def generate_message(company, type):
             result = get_negative_info(company)
             if result:
                 text_message = "\n".join(f"{key}：{result[key]}" for key in result)
-                text_message += '\n更多信息{}'
             else:
                 text_message = "暂无信息"
         except (ConnectionError, HTTPError, TooManyRedirects, Timeout) as e:
