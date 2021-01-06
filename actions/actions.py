@@ -36,11 +36,11 @@ class EntForm(FormAction):
     ) -> List[EventType]:
         company = tracker.get_slot('company')
         type = tracker.get_slot('type')
-        dispatcher.utter_message(f"{company} {type}")
+        dispatcher.utter_message(generate_message(company, type))
         return [SlotSet('type', None)]
 
 
-def get_info_type(company, type):
+def generate_message(company, type):
     if type in ('热点新闻', '新闻', '热点', '新闻舆情', '舆情'):
         try:
             result = get_hot_news(company)

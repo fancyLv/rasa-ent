@@ -2,9 +2,12 @@ language: zh
 
 pipeline:
    - name: JiebaTokenizer
+   - name: CRFEntityExtractor
+   - name: CountVectorsFeaturizer
+     OOV_token: oov
+     token_pattern: '(?u)\b\w+\b'
+#   - name: EmbeddingIntentClassifier
    - name: RegexFeaturizer
-   - name: CountVectorsFeaturizer
-   - name: CountVectorsFeaturizer
      analyzer: char_wb
      min_ngram: 1
      max_ngram: 4

@@ -84,15 +84,31 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+- intent: thanks
+  examples: |
+    - 谢谢
+    - thanks
+    - thank you
+    - 真的太感谢你了，帮了我大忙
+    - 谢谢你帮了我大忙
+    - 你帮了我大忙，谢谢你小智
+    - 非常感谢
+    - 谢了
 - intent: request_ent
   examples: |
     - 查企业
     - 查公司
     - 我想知道[深圳市腾讯计算机系统有限公司](company)的[信息](type)
+    - [小米科技有限责任公司](company)
+    - [泉州德顺玻璃有限公司](company)最近有什么[新闻](type)？
+    - [深圳市腾讯计算机系统有限公司](company)
+    - [泉州德顺玻璃有限公司](company)
 - intent: inform
   examples: |
     - [基本信息](type)
+    - 查[基本信息]吧(type)
     - [热点新闻](type)
+    - [负面信息](type)
 - intent: request_others
   examples: |
     - 查天气
@@ -100,18 +116,15 @@ nlu:
   examples: |
     - 信息
     - 基本信息
-    - 工商信息
     - 工商基本信息
 - synonym: 热点新闻
   examples: |
-    - 热点新闻
     - 新闻舆情
     - 舆情
     - 新闻
     - 热点
 - synonym: 企业负面
   examples: |
-    - 企业负面
     - 负面
     - 负面信息
     - 处罚

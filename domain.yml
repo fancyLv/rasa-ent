@@ -12,6 +12,7 @@ intents:
 - request_ent
 - inform
 - request_others
+- thanks
 entities:
 - company
 - type
@@ -41,6 +42,16 @@ responses:
   - text: Bye
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
+  utter_default:
+  - text: 没听懂，请换种说法吧~
+  utter_ask_continue:
+  - text: 请问您还要继续吗?
+  utter_noworries:
+  - text: 不用客气 :)
+  - text: 没事啦
+  - text: 不客气哈，都是老朋友了 :)
+  utter_wrong_business:
+  - text: 当前还不支持{business}业务，请重新输入。
   utter_ask_company:
   - text: 请问您要查询哪家公司？
   utter_ask_type:
