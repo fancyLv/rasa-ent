@@ -12,7 +12,7 @@ stories:
 - story: sad path 1
   steps:
   - intent: greet
-  - action: utter_greet
+  - action: utter_answer_greet
   - intent: request_ent
   - action: ent_form
   - active_loop: ent_form
@@ -20,17 +20,36 @@ stories:
   - intent: thanks
   - action: utter_noworries
 
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
 
-- story: 企业 + 基本信息 + 负面信息 + 热点新闻
+- story: stop but continue path
+  steps:
+    - intent: greet
+    - action: utter_answer_greet
+    - intent: request_ent
+    - action: ent_form
+    - active_loop: ent_form
+    - intent: stop
+    - action: utter_ask_continue
+    - intent: affirm
+    - action: ent_form
+    - active_loop: null
+    - intent: thanks
+    - action: utter_noworries
+
+- story: stop and really stop path
+  steps:
+    - intent: greet
+    - action: utter_answer_greet
+    - intent: request_ent
+    - action: ent_form
+    - active_loop: ent_form
+    - intent: stop
+    - action: utter_ask_continue
+    - intent: deny
+    - action: action_deactivate_loop
+    - active_loop: null
+
+- story: ask many times
   steps:
     - intent: request_ent
     - action: ent_form
@@ -46,3 +65,10 @@ stories:
     - active_loop: null
     - slot_was_set:
         - requested_slot: null
+    - or:
+      - intent: inform
+        entities:
+          - type: 热点新闻
+      - intent: request_ent
+        entities:
+          - type: 负面

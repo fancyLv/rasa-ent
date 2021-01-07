@@ -15,9 +15,21 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    - 你好
+    - 你好啊
+    - 早上好
+    - 晚上好
+    - 嗨
+    - 嗨喽
+    - 见到你很高兴
+    - 嘿
+    - 早
+    - 上午好
+    - hello哈喽
+    - 哈喽哈喽
+    - 喂喂
 - intent: goodbye
   examples: |
-    - good afternoon
     - cu
     - good by
     - cee you later
@@ -28,6 +40,22 @@ nlu:
     - see you around
     - bye bye
     - see you later
+    - goodbye
+    - 88
+    - 886
+    - 再见
+    - 拜
+    - 拜拜
+    - 拜拜，下次再聊
+    - 下次见
+    - 回头见
+    - 下次再见
+    - 下次再聊
+    - 有空再聊
+    - 先这样吧
+    - 好了，就说这么多了
+    - 好了，先这样
+    - 没事
 - intent: affirm
   examples: |
     - yes
@@ -36,7 +64,6 @@ nlu:
     - of course
     - that sounds good
     - correct
-    - 你好
 - intent: deny
   examples: |
     - no
@@ -94,6 +121,43 @@ nlu:
     - 你帮了我大忙，谢谢你小智
     - 非常感谢
     - 谢了
+- intent: affirm
+  examples: |
+    - 知道了
+    - 是的
+    - 当然
+    - 好的
+    - ok
+    - 嗯
+    - 可以
+    - 你可以这么做
+    - 你做得可以啊
+    - 同意
+    - 听起来不错
+    - 是这样的
+    - 的确是这样子的
+    - 我同意你的观点
+    - 对的
+    - 好滴
+    - 行
+    - 还行
+    - 当然可以
+- intent: stop
+  examples: |
+    - 你是不是傻
+    - 你就像个傻逼一样
+    - 真差劲，什么都不懂
+    - 真蠢
+    - 什么都查不到
+    - 你什么都不会
+    - 感觉你什么都不知道
+    - 你太蠢了
+    - 我不查了，太傻了
+    - 就这样吧
+    - 感觉你什么都不会
+    - 没有了
+    - 什么都没查到
+    - 我猜你是不是坏了
 - intent: request_ent
   examples: |
     - 查企业
@@ -109,9 +173,8 @@ nlu:
     - 查[基本信息]吧(type)
     - [热点新闻](type)
     - [负面信息](type)
-- intent: request_others
-  examples: |
-    - 查天气
+    - [新闻](type)
+    - 查[基本信息](type)
 - synonym: 工商信息
   examples: |
     - 信息
