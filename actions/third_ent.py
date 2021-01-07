@@ -95,7 +95,8 @@ def get_hot_news(ent_name):
         url = f'https://aiqicha.baidu.com/yuqing/hotpotNewsAjax?pid={pid}'
         response = requests.get(url, headers=headers)
         news = response.json()['data']
-        news['link'] = 'https://aiqicha.baidu.com' + news['link']
+        if news:
+            news['link'] = 'https://aiqicha.baidu.com' + news['link']
     else:
         news = {}
     return news
@@ -121,4 +122,4 @@ def get_negative_info(ent_name):
 
 
 if __name__ == '__main__':
-    print(get_hot_news('深圳市腾讯计算机系统有限公司'))
+    print(get_hot_news('泉州德顺玻璃有限公司'))
