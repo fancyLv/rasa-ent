@@ -72,3 +72,10 @@ stories:
       - intent: request_ent
         entities:
           - type: 负面
+
+- story: request weather
+  steps:
+    - intent: request_weather
+    - action: weather_form
+    - active_loop: weather_form
+    - active_loop: null

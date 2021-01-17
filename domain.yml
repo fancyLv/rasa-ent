@@ -1,37 +1,68 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- greet
-- goodbye
-- affirm
-- deny
-- mood_great
-- mood_unhappy
-- bot_challenge
-- request_ent
-- inform
-- request_others
-- thanks
+- greet:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- request_ent:
+    use_entities: true
+- inform:
+    use_entities: true
+- request_weather:
+    use_entities: true
+- inform_weather:
+    use_entities: true
+- thanks:
+    use_entities: true
+- stop:
+    use_entities: true
 entities:
 - company
 - type
+- address
+- date_time
+
 slots:
+  date_time:
+    auto_fill: false
+    influence_conversation: false
+  address:
+    auto_fill: false
+    influence_conversation: false
   company:
-    type: unfeaturized
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
     auto_fill: false
     influence_conversation: false
   type:
-    type: unfeaturized
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
     auto_fill: false
     influence_conversation: false
   requested_slot:
-    type: unfeaturized
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
 responses:
   utter_answer_greet:
-    - text: 您好！请问我可以帮到您吗？
-    - text: 您好！很高兴为您服务。请说出您要查询的功能？
+  - text: 您好！请问我可以帮到您吗？
+  - text: 您好！很高兴为您服务。请说出您要查询的功能？
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
     text: 'Here is something to cheer you up:'
@@ -65,3 +96,5 @@ actions:
 - ent_form
 forms:
   ent_form: {}
+  weather_form: {}
+e2e_actions: []

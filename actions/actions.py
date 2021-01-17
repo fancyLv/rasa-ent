@@ -17,6 +17,7 @@ from rasa_sdk.types import DomainDict
 from requests import ConnectionError, HTTPError, TooManyRedirects, Timeout
 
 from actions.third_ent import get_basic_info, get_hot_news, get_negative_info
+from actions.third_weather import get_weather_by_day
 
 
 class EntForm(FormAction):
@@ -71,4 +72,72 @@ def generate_message(company, type):
             text_message = "{}".format(e)
     else:
         text_message = f"暂不支持查询{type}"
+    return text_message
+
+
+class WeatherForm(FormAction):
+
+    def name(self) -> Text:
+        """Unique identifier of the form"""
+        return "weather_form"
+
+    @staticmethod
+    def required_slots(tracker: "Tracker") -> List[Text]:
+        """A list of required slots that the form has to fill.
+
+        Use `tracker` to request different list of slots
+        depending on the state of the dialogue
+        """
+        return ["date_time", "address"]
+
+    async def submit(
+            self,
+            dispatcher: "CollectingDispatcher",
+            tracker: "Tracker",
+            domain: "DomainDict",
+    ) -> List[EventType]:
+        """Define what the form has to do
+        after all required slots are filled"""
+        address = tracker.get_slot("address")
+        date_time = tracker.get_slot("date_time")
+        number_date = text_date_to_number_date(date_time)
+
+        if isinstance(number_date, str):
+            dispatcher.utter_message(f"暂不支持查询 {[address, number_date]} 的天气")
+        else:
+            weather_data = get_weather_message(address, date_time, number_date)
+            dispatcher.utter_message(weather_data)
+        return []
+
+
+def text_date_to_number_date(text_date):
+    if text_date == '今天':
+        number_date = 0
+    elif text_date == '明天':
+        number_date = 1
+    elif text_date == '后天':
+        number_date = 2
+    else:
+        number_date = text_date
+    return number_date
+
+
+def get_weather_message(address, date_time, number_date):
+    try:
+        weather_data = get_weather_by_day(address, number_date)
+    except (ConnectionError, HTTPError, TooManyRedirects, Timeout) as e:
+        text_message = f"{e}"
+    else:
+        text_message_tpl = """
+            {} {} ({}) 的天气情况为：白天：{}；夜晚：{}；气温：{}-{} °C
+        """
+        text_message = text_message_tpl.format(
+            address,
+            date_time,
+            weather_data['result']['fxDate'],
+            weather_data['result']['textDay'],
+            weather_data['result']['textNight'],
+            weather_data['result']['tempMin'],
+            weather_data['result']['tempMax']
+        )
     return text_message
