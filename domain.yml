@@ -36,12 +36,15 @@ entities:
 - type
 - address
 - date_time
-
 slots:
   date_time:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
     auto_fill: false
     influence_conversation: false
   address:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
     auto_fill: false
     influence_conversation: false
   company:
@@ -90,10 +93,17 @@ responses:
   - text: 请问您要查询{company}什么信息？
   utter_wrong_type:
   - text: 当前还不支持查询{type}。
+  utter_ask_date_time:
+  - text: 请问您要查询哪一天的天气？
+  utter_ask_address:
+  - text: 请问您要查询哪里的天气？
 actions:
 - utter_ask_company
 - utter_ask_type
+- utter_ask_date_time
+- utter_ask_address
 - ent_form
+- weather_form
 forms:
   ent_form: {}
   weather_form: {}

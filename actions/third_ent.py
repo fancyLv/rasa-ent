@@ -68,7 +68,7 @@ def get_basic_info(ent_name):
     result = {}
     for item in resultList:
         entName = re.sub('<.*?>', '', item['entName'])
-        if entName == ent_name:
+        if entName.replace('（','(').replace('）',')') == ent_name.replace('（','(').replace('）',')'):
             result = {
                 'pid': item['pid'],
                 '企业名称': entName,

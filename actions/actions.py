@@ -128,9 +128,7 @@ def get_weather_message(address, date_time, number_date):
     except (ConnectionError, HTTPError, TooManyRedirects, Timeout) as e:
         text_message = f"{e}"
     else:
-        text_message_tpl = """
-            {} {} ({}) 的天气情况为：白天：{}；夜晚：{}；气温：{}-{} °C
-        """
+        text_message_tpl = """{} {} ({}) 的天气情况为:\n白天:{}; 夜晚:{}; 气温:{}-{}°C"""
         text_message = text_message_tpl.format(
             address,
             date_time,
