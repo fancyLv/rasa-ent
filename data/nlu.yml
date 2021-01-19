@@ -40,7 +40,6 @@ nlu:
     - see you around
     - bye bye
     - see you later
-    - goodbye
     - 88
     - 886
     - 再见
@@ -140,6 +139,7 @@ nlu:
     - 你帮了我大忙，谢谢你小智
     - 非常感谢
     - 谢了
+    - 好的，谢谢
 - intent: stop
   examples: |
     - 你是不是傻
@@ -689,8 +689,8 @@ nlu:
     - [河南神火煤电股份有限公司](company)
     - [河南豫光金铅股份有限公司](company)
     - [湖北兴发化工集团股份有限公司](company)
-    - [天茂实业集团股份有限公司](company)
-    - [湖北凯乐科技股份有限公司](company)
+    - [天茂实业集团股份有限公司](company)的[基本信息](type)
+    - [湖北凯乐科技股份有限公司](company)的[信息](type)
     - [步步高商业连锁股份有限公司](company)
     - [广东韶钢松山股份有限公司](company)
     - [广东领益智造股份有限公司](company)
@@ -707,6 +707,11 @@ nlu:
     - [白银有色集团股份有限公司](company)
     - [中国石油集团资本股份有限公司](company)
     - [深圳市腾讯网域计算机网络有限公司](company)
+    - [行吟信息科技（上海）有限公司](company)的[工商信息](type)
+    - [行吟信息科技（上海）有限公司](company)[基本信息](type)
+    - [行吟信息科技（上海）有限公司](company)最近有什么[新闻](type)
+    - [行吟信息科技（上海）有限公司](company)最近有什么[新闻](type)？
+    - [福建品尚征信有限公司](company)
 - intent: inform
   examples: |
     - [基本信息](type)
@@ -715,6 +720,9 @@ nlu:
     - [负面信息](type)
     - [新闻](type)
     - 查[基本信息](type)
+    - 有没有[负面信息](type)？
+    - 看看[基本信息](type)
+    - 最近[新闻](type)
 - intent: request_weather
   examples: |
     - 查天气
@@ -722,12 +730,59 @@ nlu:
     - [明天](date_time)天气怎么样？
     - [今天](date_time)天气如何？
     - [今天](date_time)天气怎么样？
+    - [武汉](address)[今天](date_time)天气怎么样？
+    - [武汉](address)[今天](date_time)如何？
     - [北京](address)[今天](date_time)天气怎么样？
     - 我想知道[深圳](address)[后天](date_time)会下雨吗？
     - [哈尔滨](address)昨天下冰雹了，[明天](date_time)还会下吗？
     - [上海](address)[明天](date_time)天气好吗？
     - [广州](address)[现在](date_time)有没有在下雨？
-    - [今天](date_time)天气怎么样？
+    - 我想知道[今天](date_time)天气状况？
+    - 帮我查下天气
+    - 告诉我天气怎么样
+    - 查下天气
+    - 我要查天气
+    - 天气怎么样
+    - 看下天气
+    - 天气如何
+    - 天气
+    - 帮我查天气信息
+    - 我想知道[明天](date_time)的天气
+    - [星期一](date_time)的天气
+    - [今天](date_time)的天气怎么样
+    - 帮我查下[后天](date_time)的天气
+    - 查下[广州](address)的天气怎么样
+    - [长沙](address)的天气
+    - [深圳](address)[明天](date_time)的天气
+    - 查下[今天](date_time)[上海](address)的天气
+    - 帮我查查[佛山](address)这[周六](date_time)的天气
+    - 我想知道[上海](address)[明天](date_time)的天气
+    - [上海](address)[明天](date_time)的天气
+    - [广州](address)[今天](date_time)的天气
+    - [永州](address)[后天](date_time)的天气
+    - 你能告诉我[后天](date_time)[广州](address)的天气吗？
+    - [明天](date_time)在[北京](address)
+    - 请问[北京](address)[今天](date_time)的天气如何？
+    - [后天](date_time)我会在[南京](address)，请问哪里的天气如何？
+    - [明天](date_time)我要回[乌鲁木齐](address)了，那里的天气怎么样？
+    - [今天](date_time)的天气有点冷，不知道[哈尔滨](address)是不是一样冷？
+    - 小智，帮我查下[明天](date_time)[广州](address)的天气
+    - 查询[长沙](address)[后天](date_time)的天气
+    - [今天](date_time)[重庆](address)的天气怎么样？
+    - [深圳](address)昨天下冰雹了，[明天](date_time)还会下吗？
+    - [明天](date_time)是晴天还是雨天？
+    - [杭州](address)呢？
+    - [广州](address)怎么样？
+    - [哈尔滨](address)冷吗？
+    - [北京](address)[明天](date_time)天气如何？
+    - [北京](address)[今天](date_time)天气如何？
+    - [鲤城](address)[明天](date_time)会下雨吗？
+    - 我想知道[深圳](address)[明天](date_time)会不会下雨？
+    - [后天](date_time)呢？
+    - [泉州](address)[明天](date_time)会下雨吗？
+    - [深圳](address)[明天](date_time)天气怎么样
+    - [深圳](address)[明天](date_time)天气怎么样？
+    - [深圳](address)[今天](date_time)天气怎么样？
 - intent: inform_weather
   examples: |
     - [武汉](address)
@@ -735,6 +790,32 @@ nlu:
     - [今天](date_time)的
     - [上海]的天气
     - [今天]
+    - 告诉我在[广州](address)的怎么样
+    - 在[北京](address)的呢？
+    - 我想知道[杭州](address)的天气
+    - 我现在在[上海](address)
+    - [佛山](address)的吧
+    - 我要查询[乌鲁木齐](address)的天气
+    - 查询[深圳](address)的天气
+    - [常德](address)的天气怎么样？
+    - 请告诉我[武汉](address)的天气
+    - 还在[宁波](address)
+    - [永州](address)的
+    - 我现在在[广州](address)
+    - [上海](address)的天气
+    - [明天](date_time)的天气
+    - [后天](date_time)的天气
+    - 我想知道[明天](date_time)的天气
+    - [明天](date_time)
+    - [后天](date_time)
+    - [今天](date_time)
+    - 告诉我[明天](date_time)的天气
+    - [明天](date_time)的怎么样
+    - 查询[后天](date_time)的天气
+    - 查下[明天](date_time)的
+    - [后天](date_time)的吧
+    - 帮我查下[今天](date_time)的
+    - 不知道[今天](date_time)的怎么样
 - synonym: 工商信息
   examples: |
     - 信息

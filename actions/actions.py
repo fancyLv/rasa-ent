@@ -103,7 +103,7 @@ class WeatherForm(FormAction):
         number_date = text_date_to_number_date(date_time)
 
         if isinstance(number_date, str):
-            dispatcher.utter_message(f"暂不支持查询 {[address, number_date]} 的天气")
+            dispatcher.utter_message(f"暂不支持查询 {address, number_date} 的天气")
         else:
             weather_data = get_weather_message(address, date_time, number_date)
             dispatcher.utter_message(weather_data)

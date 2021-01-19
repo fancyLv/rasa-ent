@@ -1,14 +1,11 @@
 version: "2.0"
-
 stories:
-
 - story: happy path
   steps:
   - intent: request_ent
   - action: ent_form
   - active_loop: ent_form
   - active_loop: null
-
 - story: sad path 1
   steps:
   - intent: greet
@@ -19,63 +16,183 @@ stories:
   - active_loop: null
   - intent: thanks
   - action: utter_noworries
-
-
 - story: stop but continue path
   steps:
-    - intent: greet
-    - action: utter_answer_greet
-    - intent: request_ent
-    - action: ent_form
-    - active_loop: ent_form
-    - intent: stop
-    - action: utter_ask_continue
-    - intent: affirm
-    - action: ent_form
-    - active_loop: null
-    - intent: thanks
-    - action: utter_noworries
-
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_ent
+  - action: ent_form
+  - active_loop: ent_form
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: ent_form
+  - active_loop: null
+  - intent: thanks
+  - action: utter_noworries
 - story: stop and really stop path
   steps:
-    - intent: greet
-    - action: utter_answer_greet
-    - intent: request_ent
-    - action: ent_form
-    - active_loop: ent_form
-    - intent: stop
-    - action: utter_ask_continue
-    - intent: deny
-    - action: action_deactivate_loop
-    - active_loop: null
-
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_ent
+  - action: ent_form
+  - active_loop: ent_form
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: deny
+  - action: action_deactivate_loop
+  - active_loop: null
 - story: ask many times
   steps:
+  - intent: request_ent
+  - action: ent_form
+  - active_loop: ent_form
+  - slot_was_set:
+    - requested_slot: company
+  - slot_was_set:
+    - company: 深圳市腾讯网域计算机网络有限公司
+  - slot_was_set:
+    - requested_slot: type
+  - slot_was_set:
+    - type: 基本信息
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - or:
+    - intent: inform
+      entities:
+      - type: 热点新闻
     - intent: request_ent
-    - action: ent_form
-    - active_loop: ent_form
-    - slot_was_set:
-        - requested_slot: company
-    - slot_was_set:
-        - company: 深圳市腾讯网域计算机网络有限公司
-    - slot_was_set:
-        - requested_slot: type
-    - slot_was_set:
-        - type: 基本信息
-    - active_loop: null
-    - slot_was_set:
-        - requested_slot: null
-    - or:
-      - intent: inform
-        entities:
-          - type: 热点新闻
-      - intent: request_ent
-        entities:
-          - type: 负面
-
+      entities:
+      - type: 负面
 - story: request weather
+  steps:
+  - intent: request_weather
+  - action: weather_form
+  - active_loop: weather_form
+  - active_loop: null
+- story: Story from Conversation ID 7065688dcb24439194325e404aea2fe0
+  steps:
+  - intent: request_weather
+  - action: weather_form
+  - active_loop: weather_form
+  - slot_was_set:
+    - requested_slot: date_time
+  - intent: request_weather
+    entities:
+    - address: 深圳
+    - date_time: 今天
+  - action: weather_form
+  - slot_was_set:
+    - address: 深圳
+  - slot_was_set:
+    - date_time: 今天
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+- story: Story from Conversation ID 88b29651c8bb4d8a91460879136e02a7
+  steps:
+  - intent: request_weather
+  - action: weather_form
+  - active_loop: weather_form
+  - slot_was_set:
+    - requested_slot: date_time
+  - intent: request_weather
+    entities:
+    - address: 武汉
+  - action: weather_form
+  - slot_was_set:
+    - address: 武汉
+  - slot_was_set:
+    - requested_slot: date_time
+  - intent: inform_weather
+    entities:
+    - date_time: 今天
+  - action: weather_form
+  - slot_was_set:
+    - date_time: 今天
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: request_weather
+    entities:
+    - address: 北京
+  - action: weather_form
+  - active_loop: weather_form
+  - slot_was_set:
+    - date_time: 今天
+  - slot_was_set:
+    - address: 武汉
+  - slot_was_set:
+    - address: 北京
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: request_weather
+    entities:
+    - date_time: 明天
+  - action: weather_form
+
+- story: request weather 3
   steps:
     - intent: request_weather
     - action: weather_form
     - active_loop: weather_form
+    - slot_was_set:
+        - requested_slot: date_time
+    - intent: request_weather
+      entities:
+        - address: 广州
+        - date_time: 今天
+    - action: weather_form
+    - slot_was_set:
+        - address: 广州
+    - slot_was_set:
+        - date_time: 今天
     - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - intent: request_weather
+      entities:
+        - date_time: 明天
+    - action: weather_form
+    - active_loop: weather_form
+    - slot_was_set:
+        - date_time: 今天
+    - slot_was_set:
+        - address: 广州
+    - slot_was_set:
+        - date_time: 明天
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - intent: request_weather
+      entities:
+        - address: 上海
+    - action: weather_form
+    - active_loop: weather_form
+    - slot_was_set:
+        - date_time: 明天
+    - slot_was_set:
+        - address: 广州
+    - slot_was_set:
+        - address: 上海
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - intent: request_weather
+      entities:
+        - date_time: 后天
+    - action: weather_form
+    - active_loop: weather_form
+    - slot_was_set:
+        - date_time: 明天
+    - slot_was_set:
+        - address: 上海
+    - slot_was_set:
+        - date_time: 后天
+    - active_loop: null
+    - slot_was_set:
+        - requested_slot: null
+    - intent: thanks
+    - action: utter_noworries

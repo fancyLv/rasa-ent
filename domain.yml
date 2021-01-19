@@ -97,11 +97,16 @@ responses:
   - text: 请问您要查询哪一天的天气？
   utter_ask_address:
   - text: 请问您要查询哪里的天气？
+  utter_answer_thanks:
+  - text: 嗯呢。不用客气~
+  - text: 这是我应该做的，主人~
+  - text: 嗯嗯，合作愉快！
 actions:
 - utter_ask_company
 - utter_ask_type
 - utter_ask_date_time
 - utter_ask_address
+- utter_answer_thanks
 - ent_form
 - weather_form
 forms:
